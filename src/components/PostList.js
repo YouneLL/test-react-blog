@@ -1,4 +1,5 @@
 import React from 'react';
+import faker from 'faker';
 
 class PostList extends React.Component {
   render() {
@@ -7,14 +8,14 @@ class PostList extends React.Component {
 
         <div class="row">
 
-          <div className="col s12 m4 l3">
+          <div className="col s12 m4">
             <div className="card">
               <div className="card-image">
-                <img alt="post 1" src="" />
-                <span className="card-title">Post Title 1</span>
+                <img alt="post 1" src="https://source.unsplash.com/random/800x600/?sig=1" />
+                <span className="card-title">{faker.name.title()}</span>
               </div>
               <div className="card-content">
-                <p>Post content 1</p>
+                <p>{faker.random.words()}</p>
               </div>
               <div className="card-action">
                 <button class="waves-effect waves-light btn-small">Read more...</button>
@@ -22,14 +23,14 @@ class PostList extends React.Component {
             </div>
           </div>
 
-          <div className="col s12 m4 l3">
+          <div className="col s12 m4">
             <div className="card">
               <div className="card-image">
-                <img alt="post 2" src="" />
-                <span className="card-title">Post title 2</span>
+                <img alt="post 2" src="https://source.unsplash.com/random/800x600/?sig=2" />
+                <span className="card-title">{faker.name.title()}</span>
               </div>
               <div className="card-content">
-                <p>Post content 2</p>
+                <p>{faker.random.words()}</p>
               </div>
               <div className="card-action">
                 <button class="waves-effect waves-light btn-small">Read more...</button>
@@ -37,14 +38,14 @@ class PostList extends React.Component {
             </div>
           </div>
 
-          <div className="col s12 m4 l3">
+          <div className="col s12 m4">
             <div className="card">
               <div className="card-image">
-                <img alt="post 3" src="" />
-                <span className="card-title">Post Title 3</span>
+                <img alt="post 3" src="https://source.unsplash.com/random/800x600/?sig=3" />
+                <span className="card-title">{faker.name.title()}</span>
               </div>
               <div className="card-content">
-                <p>Post content 3</p>
+                <p>{faker.random.words()}</p>
               </div>
               <div className="card-action">
                 <button class="waves-effect waves-light btn-small">Read more...</button>
@@ -52,14 +53,14 @@ class PostList extends React.Component {
             </div>
           </div>
 
-          <div className="col s12 m4 l3">
+          <div className="col s12 m4">
             <div className="card">
               <div className="card-image">
-                <img alt="post 4" src="" />
-                <span className="card-title">Post Title 4</span>
+                <img alt="post 1" src="https://source.unsplash.com/random/800x600/?sig=4" />
+                <span className="card-title">{faker.name.title()}</span>
               </div>
               <div className="card-content">
-                <p>Post content 4</p>
+                <p>{faker.random.words()}</p>
               </div>
               <div className="card-action">
                 <button class="waves-effect waves-light btn-small">Read more...</button>
@@ -67,18 +68,14 @@ class PostList extends React.Component {
             </div>
           </div>
 
-        </div>
-
-        <div class="row">
-
-          <div className="col s12 m4 l3">
+          <div className="col s12 m4">
             <div className="card">
               <div className="card-image">
-                <img alt="post 1" src="" />
-                <span className="card-title">Post Title 1</span>
+                <img alt="post 2" src="https://source.unsplash.com/random/800x600/?sig=5" />
+                <span className="card-title">{faker.name.title()}</span>
               </div>
               <div className="card-content">
-                <p>Post content 1</p>
+                <p>{faker.random.words()}</p>
               </div>
               <div className="card-action">
                 <button class="waves-effect waves-light btn-small">Read more...</button>
@@ -86,44 +83,14 @@ class PostList extends React.Component {
             </div>
           </div>
 
-          <div className="col s12 m4 l3">
+          <div className="col s12 m4">
             <div className="card">
               <div className="card-image">
-                <img alt="post 2" src="" />
-                <span className="card-title">Post title 2</span>
+                <img alt="post 3" src="https://source.unsplash.com/random/800x600/?sig=6" />
+                <span className="card-title">{faker.name.title()}</span>
               </div>
               <div className="card-content">
-                <p>Post content 2</p>
-              </div>
-              <div className="card-action">
-                <button class="waves-effect waves-light btn-small">Read more...</button>
-              </div>
-            </div>
-          </div>
-
-          <div className="col s12 m4 l3">
-            <div className="card">
-              <div className="card-image">
-                <img alt="post 3" src="" />
-                <span className="card-title">Post Title 3</span>
-              </div>
-              <div className="card-content">
-                <p>Post content 3</p>
-              </div>
-              <div className="card-action">
-                <button class="waves-effect waves-light btn-small">Read more...</button>
-              </div>
-            </div>
-          </div>
-
-          <div className="col s12 m4 l3">
-            <div className="card">
-              <div className="card-image">
-                <img alt="post 4" src="" />
-                <span className="card-title">Post Title 4</span>
-              </div>
-              <div className="card-content">
-                <p>Post content 4</p>
+                <p>{faker.random.words()}</p>
               </div>
               <div className="card-action">
                 <button class="waves-effect waves-light btn-small">Read more...</button>
