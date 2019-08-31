@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const PostCard = (props) => {
-  const { id, title, content } = props
+  const { id, title, body } = props;
   return (
     <div className="col s12 m6 l4">
       <div className="card">
@@ -11,7 +11,7 @@ const PostCard = (props) => {
           <span className="card-title">{title}</span>
         </div>
         <div className="card-content">
-          <p>{content}</p>
+          <p>{body}</p>
         </div>
         <div className="card-action">
           <button className="waves-effect waves-light btn-small">Read more...</button>
@@ -24,7 +24,7 @@ const PostCard = (props) => {
 PostCard.propTypes = {
   id: PropTypes.number,
   title: PropTypes.string,
-  content: PropTypes.string,
+  body: PropTypes.string,
 }
 
 export default PostCard;

@@ -1,18 +1,28 @@
 import React from 'react';
+import jsonPlaceholder from '../api/jsonPlaceholder';
 import PostCard from './PostCard';
-import faker from 'faker';
+import {limitString} from '../services/helpers';
 
 class PostList extends React.Component {
+
+  state = { posts: [] };
+
+  componentDidMount = async () => {
+    const response = await jsonPlaceholder.get('/posts');
+    this.setState({ posts: response.data });
+  }
+
+  renderPosts = () => {
+    return this.state.posts.map(({id, title, body}) => (
+      <PostCard id={id} title={title} body={limitString(body)} />
+    ));
+  }
+
   render() {
     return (
       <div className="container">
         <div className="row">
-          <PostCard id={1} title={faker.random.word()} content={faker.random.words(2)} />
-          <PostCard id={2} title={faker.random.word()} content={faker.random.words(2)}/>
-          <PostCard id={3} title={faker.random.word()} content={faker.random.words(2)}/>
-          <PostCard id={4} title={faker.random.word()} content={faker.random.words(2)}/>
-          <PostCard id={5} title={faker.random.word()} content={faker.random.words(2)}/>
-          <PostCard id={6} title={faker.random.word()} content={faker.random.words(2)}/>
+          {this.renderPosts()}
         </div>
       </div>
     );
