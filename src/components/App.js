@@ -1,7 +1,8 @@
 import React from 'react';
+import PostList from './PostList';
 
 const App = () => {
-  return <h1>My blog application</h1>;
+  return <PostList />;
 }
 
 export default App;
