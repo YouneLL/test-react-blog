@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import jsonPlaceholder from '../api/jsonPlaceholder';
 import PostCard from './PostCard';
+import PostCardAction from './PostCardAction';
 import {limitString} from '../services/helpers';
 
 class PostList extends React.Component {
@@ -12,21 +14,24 @@ class PostList extends React.Component {
     this.setState({ posts: response.data });
   }
 
-  renderPosts = () => {
-    return this.state.posts.map(({id, title, body}) => (
-      <PostCard id={id} title={title} body={limitString(body)} />
-    ));
+  handleDisplayPostClick = (postId) => (e) => {
+    const { handleDisplayPostClick } = this.props;
+    // find post by postId
+    const post = this.state.posts.find(post => post.id === postId);
+    handleDisplayPostClick(post);
   }
 
   render() {
-    return (
-      <div className="container">
-        <div className="row">
-          {this.renderPosts()}
-        </div>
-      </div>
-    );
+    return this.state.posts.map(({id, title, body}) => (
+      <PostCard key={id} id={id} title={title} body={limitString(body)} expend={false}>
+        <PostCardAction onClick={this.handleDisplayPostClick} postId={id} />
+      </PostCard>
+    ));
   }
+}
+
+PostList.propTypes = {
+  onDisplayPostClick: PropTypes.func,
 }
 
 export default PostList;
