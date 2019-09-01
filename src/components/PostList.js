@@ -23,7 +23,7 @@ class PostList extends React.Component {
 
   render() {
     return this.state.posts.map(({id, title, body}) => (
-      <PostCard key={id} id={id} title={title} body={limitString(body)} expend={false}>
+      <PostCard key={id} id={id} title={title} body={limitString(body)} box={'shrink'}>
         <PostCardAction onClick={this.handleDisplayPostClick} postId={id} />
       </PostCard>
     ));
