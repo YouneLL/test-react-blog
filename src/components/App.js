@@ -12,7 +12,7 @@ class App extends React.Component {
   }
 
   renderPost = ({id, title, body}) => {
-    return <PostCard id={id} title={title} body={body} expend={true} />;
+    return <PostCard id={id} title={title} body={body} box={'grow'} />;
   }
 
   renderPostList = () => {
