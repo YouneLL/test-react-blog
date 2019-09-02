@@ -1,13 +1,21 @@
 import React from 'react';
 import PostList from './PostList';
 import PostCard from './PostCard';
+import jsonPlaceholder from '../api/jsonPlaceholder';
 
 
 class App extends React.Component {
 
-  state = { post: null };
+  state = { posts: [], post: null };
 
-  handleDisplayPostClick = (post) => {
+  componentDidMount = async () => {
+    const response = await jsonPlaceholder.get('/posts');
+    this.setState({ posts: response.data });
+  }
+
+  onPostCardActionClick = (postId) => (e) => {
+    // find post by postId
+    const post = this.state.posts.find(post => post.id === postId);
     this.setState({ post });
   }
 
@@ -15,17 +23,17 @@ class App extends React.Component {
     return <PostCard id={id} title={title} body={body} box={'grow'} />;
   }
 
-  renderPostList = () => {
-    return <PostList handleDisplayPostClick={this.handleDisplayPostClick}/>
+  renderPostList = (posts) => {
+    return <PostList posts={posts} onPostCardActionClick={this.onPostCardActionClick}/>
   }
 
   render() {
-    const { post } = this.state;
+    const { posts, post } = this.state;
     return (
       <div className="container">
         <div className="row">
           <br />
-          { post ? this.renderPost(post) : this.renderPostList() }
+          { post ? this.renderPost(post) : this.renderPostList(posts) }
         </div>
       </div>
     );
