@@ -24,6 +24,10 @@ const PostCard = (props) => {
   );
 }
 
+PostCard.defaultProps = {
+  box: 'grow',
+}
+
 PostCard.propTypes = {
   id: PropTypes.number,
   title: PropTypes.string,

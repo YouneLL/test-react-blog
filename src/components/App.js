@@ -1,8 +1,7 @@
 import React from 'react';
 import PostList from './PostList';
-import PostCard from './PostCard';
+import PostDetail from './PostDetail';
 import jsonPlaceholder from '../api/jsonPlaceholder';
-import Comment from './Comment';
 
 
 class App extends React.Component {
@@ -21,7 +20,7 @@ class App extends React.Component {
   }
 
   renderPost = ({id, title, body}) => {
-    return <PostCard id={id} title={title} body={body} box={'grow'} />;
+    return <PostDetail id={id} title={title} body={body} />;
   }
 
   renderPostList = (posts) => {
@@ -34,13 +33,6 @@ class App extends React.Component {
       <div className="container">
         <div className="row">
           { post ? this.renderPost(post) : this.renderPostList(posts) }
-        </div>
-        <div className="row">
-          <Comment />
-          <Comment />
-          <Comment />
-          <Comment />
-          <Comment />
         </div>
       </div>
     );
