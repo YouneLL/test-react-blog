@@ -2,6 +2,7 @@ import React from 'react';
 import PostList from './PostList';
 import PostCard from './PostCard';
 import jsonPlaceholder from '../api/jsonPlaceholder';
+import Comment from './Comment';
 
 
 class App extends React.Component {
@@ -32,8 +33,14 @@ class App extends React.Component {
     return (
       <div className="container">
         <div className="row">
-          <br />
           { post ? this.renderPost(post) : this.renderPostList(posts) }
+        </div>
+        <div className="row">
+          <Comment />
+          <Comment />
+          <Comment />
+          <Comment />
+          <Comment />
         </div>
       </div>
     );
