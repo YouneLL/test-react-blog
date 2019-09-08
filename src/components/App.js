@@ -22,15 +22,14 @@ class App extends React.Component {
 
   onSubmitPost = (title, content, done) => async (e) => {
     e.preventDefault();
-    // post new post
-    await jsonPlaceholder.post('/posts', {
+    // add new post
+    const response = await jsonPlaceholder.post('/posts', {
       title, body: content, userId: 1
     });
-    // invoke callback
+    // update state
+    this.setState({ posts: [ ...this.state.posts, response.data ] });
+    // invoke callback in order to reset form inputs
     done();
-    // refetch posts
-    const response = await jsonPlaceholder.get('/posts');
-    this.setState({ posts: response.data });
   }
 
   renderPostDetailPage = ({id, title, body}) => {
@@ -40,9 +39,9 @@ class App extends React.Component {
   renderPostsPage = (posts) => {
     return (
       <React.Fragment>
-        <AddPost onSubmitPost={this.onSubmitPost} />
-        <div className="divider" />
         <PostList posts={posts} onPostDetailClick={this.onPostDetailClick} />
+        <div className="divider" />
+        <AddPost onSubmitPost={this.onSubmitPost} />
       </React.Fragment>
     );
   }
