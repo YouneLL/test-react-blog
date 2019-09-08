@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import jsonPlaceholder from '../api/jsonPlaceholder';
 import PostCard from './PostCard';
 import CommentList from './CommentList';
+import AddComment from './AddComment';
 
 class PostDetail extends React.Component {
 
@@ -18,17 +19,20 @@ class PostDetail extends React.Component {
     const { id, title, body } = this.props;
     const { comments } = this.state;
     return (
-      <div className="section">
-        <div className="row">
-          <div className="col s12">
-            <h5>Post Detail</h5>
+      <React.Fragment>
+        <div className="section">
+          <div className="row">
+            <div className="col s12">
+              <h5>Post Detail</h5>
+            </div>
           </div>
+          <div className="row">
+            <PostCard id={id} title={title} body={body} />
+          </div>
+          <CommentList comments={comments} />
+          <AddComment onSubmitComment={this.onSubmitComment} />
         </div>
-        <div className="row">
-          <PostCard id={id} title={title} body={body} />
-        </div>
-        <CommentList comments={comments} />
-      </div>
+      </React.Fragment>
     );
   }
 }

@@ -7,7 +7,7 @@ const Comment = (props) => {
   const { name, body, date, avatarUrl } = props;
   return (
     <div className="row comment-row">
-      <div className="col offset-s1 s10">
+      <div className="col s10">
         <div className="comment-container">
           <div className="comment-avatar">
             <img src={avatarUrl} alt="" className="circle responsive-img"/>
