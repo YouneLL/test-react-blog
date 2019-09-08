@@ -10,7 +10,6 @@ class PostDetail extends React.Component {
 
   componentDidMount = async () => {
     const { id } = this.props;
-    console.log(id);
     const response = await jsonPlaceholder.get('/comments', { params: { postId: id } });
     this.setState({ comments: response.data });
   }
@@ -19,11 +18,17 @@ class PostDetail extends React.Component {
     const { id, title, body } = this.props;
     const { comments } = this.state;
     return (
-      <React.Fragment>
-        <PostCard id={id} title={title} body={body} />
+      <div className="section">
+        <div className="row">
+          <div className="col s12">
+            <h5>Post Detail</h5>
+          </div>
+        </div>
+        <div className="row">
+          <PostCard id={id} title={title} body={body} />
+        </div>
         <CommentList comments={comments} />
-      </React.Fragment>
-
+      </div>
     );
   }
 }
