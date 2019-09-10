@@ -1,33 +1,25 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import PostList from './PostList';
 import PostDetail from './PostDetail';
 import AddPost from './AddPost';
-import jsonPlaceholder from '../api/jsonPlaceholder';
-
+import { fetchPosts, selectPost, addPost }  from '../actions';
 
 class App extends React.Component {
 
-  state = { posts: [], post: null };
-
   componentDidMount = async () => {
-    const response = await jsonPlaceholder.get('/posts');
-    this.setState({ posts: response.data });
+    this.props.fetchPosts();
   }
 
-  onPostDetailClick = (postId) => (e) => {
-    // find post by postId
-    const post = this.state.posts.find(post => post.id === postId);
-    this.setState({ post });
+  onSelectPost = (postId) => (e) => {
+    this.props.selectPost(postId);
   }
 
-  onSubmitPost = (title, content, done) => async (e) => {
+  onSubmitPost = (post, done) => async (e) => {
     e.preventDefault();
     // add new post
-    const response = await jsonPlaceholder.post('/posts', {
-      title, body: content, userId: 1
-    });
-    // update state
-    this.setState({ posts: [ ...this.state.posts, response.data ] });
+    this.props.addPost({ ...post, userId: 1 });
     // invoke callback in order to reset form inputs
     done();
   }
@@ -39,7 +31,7 @@ class App extends React.Component {
   renderPostsPage = (posts) => {
     return (
       <React.Fragment>
-        <PostList posts={posts} onPostDetailClick={this.onPostDetailClick} />
+        <PostList posts={posts} onSelectPost={this.onSelectPost} />
         <div className="divider" />
         <AddPost onSubmitPost={this.onSubmitPost} />
       </React.Fragment>
@@ -47,13 +39,19 @@ class App extends React.Component {
   }
 
   render() {
-    const { posts, post } = this.state;
+    const { posts, selectedPost } = this.props;
     return (
       <div className="container">
-        { post ? this.renderPostDetailPage(post) : this.renderPostsPage(posts) }
+        { selectedPost ? this.renderPostDetailPage(selectedPost) : this.renderPostsPage(posts) }
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state) => ({ ...state.data });
+
+export default connect(mapStateToProps, {
+  fetchPosts,
+  selectPost,
+  addPost,
+})(App);

@@ -6,7 +6,7 @@ import { limitString } from '../services/helpers';
 
 const PostList = (props) => {
 
-  const { posts, onPostDetailClick } = props;
+  const { posts, onSelectPost } = props;
   return (
     <div className="section">
       <div className="row">
@@ -18,7 +18,7 @@ const PostList = (props) => {
         {
           posts.map(({id, title, body}) => (
             <PostCard key={id} id={id} title={title} body={limitString(body)} box={'shrink'}>
-              <PostCardAction onPostDetailClick={onPostDetailClick} postId={id} />
+              <PostCardAction onSelectPost={onSelectPost} postId={id} />
             </PostCard>
           ))
         }
@@ -29,7 +29,7 @@ const PostList = (props) => {
 
 PostList.propTypes = {
   posts: PropTypes.array,
-  onPostDetailClick: PropTypes.func,
+  onSelectPost: PropTypes.func,
 }
 
 export default PostList;
