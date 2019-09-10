@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const PostCardAction = (props) => {
-  const { onPostDetailClick, postId } = props;
+  const { onSelectPost, postId } = props;
   return (
     <div className="card-action">
-      <button className="waves-effect waves-light btn-small" onClick={onPostDetailClick(postId)}>
+      <button className="waves-effect waves-light btn-small" onClick={onSelectPost(postId)}>
         Read more...
       </button>
     </div>
@@ -13,7 +13,7 @@ const PostCardAction = (props) => {
 }
 
 PostCardAction.propTypes = {
-  onPostDetailClick: PropTypes.func,
+  onSelectPost: PropTypes.func,
 }
 
 export default PostCardAction;

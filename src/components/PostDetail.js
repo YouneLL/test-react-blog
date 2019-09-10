@@ -1,23 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import jsonPlaceholder from '../api/jsonPlaceholder';
+import { connect } from 'react-redux';
+
 import PostCard from './PostCard';
 import CommentList from './CommentList';
 import AddComment from './AddComment';
+import { fetchComments } from '../actions';
 
 class PostDetail extends React.Component {
 
-  state = { comments: [] };
-
   componentDidMount = async () => {
-    const { id } = this.props;
-    const response = await jsonPlaceholder.get('/comments', { params: { postId: id } });
-    this.setState({ comments: response.data });
+    this.props.fetchComments(this.props.id);
   }
 
   render() {
-    const { id, title, body } = this.props;
-    const { comments } = this.state;
+    const { id, title, body, comments } = this.props;
     return (
       <React.Fragment>
         <div className="section">
@@ -41,6 +38,15 @@ PostCard.propTypes = {
   id: PropTypes.number,
   title: PropTypes.string,
   body: PropTypes.string,
+  comments: PropTypes.array,
 }
 
-export default PostDetail;
+const mapStateToProps = (state) => ({
+  comments: state.data.comments,
+});
+
+const mapDispatchToProps = {
+  fetchComments,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostDetail);
